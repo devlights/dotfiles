@@ -76,38 +76,3 @@ syntax on
 "   - https://vim-jp.org/vimdoc-ja/pi_netrw.html#netrw-cd
 "
 let g:netrw_keepdir=0
-
-"---------------------------------------------------------------------------
-" vim-plug:
-"   - vim-go
-"
-" 参考： https://qiita.com/zipper/items/9a63856580872c5e02a4
-if has("mac") || has("unix")
-  " 参考： https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
-  if empty(glob('~/.vim/autoload/plug.vim'))
-    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-      \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-  endif
-
-  call plug#begin('~/.vim/plugged')
-  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-  Plug 'ctrlpvim/ctrlp.vim'
-  Plug 'vim-jp/vimdoc-ja'
-  call plug#end()
-  
-  " 参考： https://github.com/fatih/vim-go/issues/207
-  let g:go_fmt_command = "goimports"
-endif
-
-"---------------------------------------------------------------------------
-" color scheme:
-"
-" [dracula theme](https://draculatheme.com/vim)
-"
-" $ mkdir -p ~/.vim/pack/theme/start
-" $ cd ~/.vim/pack/theme/start
-" $ git clone https://github.com/dracula/vim.git dracula
-"
-"packadd! dracula
-"colorscheme dracula
