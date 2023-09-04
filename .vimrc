@@ -42,6 +42,8 @@ set formatoptions+=mM
 set title
 " 行番号を表示 (nonumber:非表示)
 set number
+" 相対行番号形式にする
+set relativenumber
 " ルーラーを表示 (noruler:非表示)
 set ruler
 " タブや改行を表示 (list:表示)
