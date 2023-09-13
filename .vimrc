@@ -78,3 +78,23 @@ syntax on
 "   - https://vim-jp.org/vimdoc-ja/pi_netrw.html#netrw-cd
 "
 let g:netrw_keepdir=0
+
+" vim-plug
+"
+" see: https://github.com/junegunn/vim-plug#installation
+"call plug#begin()
+"Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+"Plug 'vim-jp/vimdoc-ja'
+"Plug 'ctrlpvim/ctrlp.vim'
+"call plug#end()
+
+" https://github.com/vim-jp/vimdoc-ja/wiki
+"set helplang=ja,en
+
+" vim-go
+"
+" - https://cs.opensource.google/go/x/tools/+/master:gopls/doc/vim.md
+" - https://github.com/fatih/vim-go/wiki/Tutorial
+"let g:go_def_mode='gopls'
+"let g:go_info_mode='gopls'
+"let g:go_rename_command='gopls'
