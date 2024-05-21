@@ -115,7 +115,7 @@ Plug 'itchyny/lightline.vim'
 call plug#end()
 
 " https://github.com/vim-jp/vimdoc-ja/wiki
-"set helplang=ja,en
+set helplang=ja,en
 
 " https://github.com/catppuccin/vim
 let g:lightline = {'colorscheme': 'catppuccin_macchiato'}
