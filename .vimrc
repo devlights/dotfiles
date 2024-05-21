@@ -1,5 +1,23 @@
 " https://gist.github.com/devlights/2ff36954159d866ecdd4928cd329092b
 "---------------------------------------------------------------------------
+
+"---------------------------------------------------------------------------
+" 全体設定:
+"
+" VI互換モードをOFF
+set nocompatible
+" シンタックスハイライト
+syntax on
+" ファイルタイプ検出をON
+filetype on
+" ファイルタイプに応じたプラグインのロードをON
+filetype plugin on
+" ファイルタイプに応じたインデント設定のロードをON
+filetype indent on
+" 対応する括弧にマッチするように
+runtime macros/matchit.vim
+
+"---------------------------------------------------------------------------
 " 検索の挙動に関する設定:
 "
 " 検索時に大文字小文字を無視 (noignorecase:無視しない)
@@ -12,7 +30,6 @@ set incsearch
 set hlsearch
 " 検索時の正規表現指定を行いやすいように \v をデフォルトで指定するようにしておく
 nmap / /\v
-
 
 "---------------------------------------------------------------------------
 " 編集に関する設定:
@@ -73,8 +90,6 @@ set cmdheight=2
 set showcmd
 " モードを表示する
 set showmode
-" 画面のカラースキーマ
-colorscheme desert
 " ベル鳴らさない
 set belloff=all
 
@@ -85,8 +100,6 @@ set belloff=all
 set nobackup
 " スワップファイルを作成しない (次行の先頭の " を削除すれば有効になる)
 set noswapfile
-" シンタックスハイライト
-syntax on
 
 "---------------------------------------------------------------------------
 " マウスに関する設定:
@@ -95,6 +108,15 @@ set mouse=a
 set clipboard+=autoselect
 set clipboard+=unnamed
 set clipboard+=unnamedplus
+
+"---------------------------------------------------------------------------
+" Windows
+"
+" Change terminal shell (Windows)
+"   - https://vi.stackexchange.com/a/14934
+if has("win32")
+	set shell=pwsh
+endif
 
 "---------------------------------------------------------------------------
 " netrw:
