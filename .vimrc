@@ -10,6 +10,9 @@ set smartcase
 set incsearch
 " 検索ハイライト
 set hlsearch
+" 検索時の正規表現指定を行いやすいように \v をデフォルトで指定するようにしておく
+nmap / /\v
+
 
 "---------------------------------------------------------------------------
 " 編集に関する設定:
@@ -34,6 +37,16 @@ set showmatch
 set wildmenu
 " テキスト挿入中の自動折り返しを日本語に対応させる
 set formatoptions+=mM
+" エンコーディングと改行コード関連
+set encoding=utf-8
+set fileencodings=utf-8,sjis,euc-jp,iso-2022-jp
+set fileformats=unix,dos,mac
+" 常に現在のディレクトリに相対的になるように
+set path+=**
+" タグファイルの設定
+" :help file-searching
+set tags=./tags;
+
 
 "---------------------------------------------------------------------------
 " GUI固有ではない画面表示の設定:
@@ -62,6 +75,8 @@ set showcmd
 set showmode
 " 画面のカラースキーマ
 colorscheme desert
+" ベル鳴らさない
+set belloff=all
 
 "---------------------------------------------------------------------------
 " ファイル操作に関する設定:
@@ -74,6 +89,14 @@ set noswapfile
 syntax on
 
 "---------------------------------------------------------------------------
+" マウスに関する設定:
+"
+set mouse=a
+set clipboard+=autoselect
+set clipboard+=unnamed
+set clipboard+=unnamedplus
+
+"---------------------------------------------------------------------------
 " netrw:
 "   - https://vim-jp.org/vimdoc-ja/pi_netrw.html#netrw-cd
 "
@@ -82,19 +105,17 @@ let g:netrw_keepdir=0
 " vim-plug
 "
 " see: https://github.com/junegunn/vim-plug#installation
-"call plug#begin()
-"Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-"Plug 'vim-jp/vimdoc-ja'
-"Plug 'ctrlpvim/ctrlp.vim'
-"call plug#end()
+call plug#begin()
+Plug 'vim-jp/vimdoc-ja'
+Plug 'dracula/vim',{'as':'dracula'}
+Plug 'catppuccin/vim', { 'as': 'catppuccin' }
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'glidenote/memolist.vim'
+Plug 'itchyny/lightline.vim'
+call plug#end()
 
 " https://github.com/vim-jp/vimdoc-ja/wiki
 "set helplang=ja,en
 
-" vim-go
-"
-" - https://cs.opensource.google/go/x/tools/+/master:gopls/doc/vim.md
-" - https://github.com/fatih/vim-go/wiki/Tutorial
-"let g:go_def_mode='gopls'
-"let g:go_info_mode='gopls'
-"let g:go_rename_command='gopls'
+" https://github.com/catppuccin/vim
+let g:lightline = {'colorscheme': 'catppuccin_macchiato'}
