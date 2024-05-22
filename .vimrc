@@ -6,14 +6,14 @@
 "
 " VI互換モードをOFF
 set nocompatible
-" シンタックスハイライト
-syntax on
 " ファイルタイプ検出をON
 filetype on
 " ファイルタイプに応じたプラグインのロードをON
 filetype plugin on
 " ファイルタイプに応じたインデント設定のロードをON
 filetype indent on
+" シンタックスハイライト
+syntax on
 " 対応する括弧にマッチするように
 runtime macros/matchit.vim
 
@@ -126,18 +126,33 @@ let g:netrw_keepdir=0
 
 " vim-plug
 "
+" see: https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
+"let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+"if empty(glob(data_dir . '/autoload/plug.vim'))
+"  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+"  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+"endif
+
 " see: https://github.com/junegunn/vim-plug#installation
 call plug#begin()
 Plug 'vim-jp/vimdoc-ja'
 Plug 'dracula/vim',{'as':'dracula'}
 Plug 'catppuccin/vim', { 'as': 'catppuccin' }
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'glidenote/memolist.vim'
 Plug 'itchyny/lightline.vim'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'vim-scripts/taglist.vim'
+Plug 'glidenote/memolist.vim'
+Plug 'preservim/nerdtree'
+Plug 'chrisbra/csv.vim'
 call plug#end()
 
 " https://github.com/vim-jp/vimdoc-ja/wiki
 set helplang=ja,en
 
 " https://github.com/catppuccin/vim
-let g:lightline = {'colorscheme': 'catppuccin_macchiato'}
+"let g:lightline = {'colorscheme': 'dracula'}
+"let g:lightline = {'colorscheme': 'catppuccin_latte'}
+let g:lightline = {'colorscheme': 'catppuccin_frappe'}
+"let g:lightline = {'colorscheme': 'catppuccin_macchiato'}
+"let g:lightline = {'colorscheme': 'catppuccin_mocha'}
+
