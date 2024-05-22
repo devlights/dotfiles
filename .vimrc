@@ -171,9 +171,9 @@ set helplang=ja,en
 " lightline
 "
 " https://github.com/catppuccin/vim
-"let g:lightline = {'colorscheme': 'dracula'}
+let g:lightline = {'colorscheme': 'dracula'}
 "let g:lightline = {'colorscheme': 'catppuccin_latte'}
-let g:lightline = {'colorscheme': 'catppuccin_frappe'}
+"let g:lightline = {'colorscheme': 'catppuccin_frappe'}
 "let g:lightline = {'colorscheme': 'catppuccin_macchiato'}
 "let g:lightline = {'colorscheme': 'catppuccin_mocha'}
 
