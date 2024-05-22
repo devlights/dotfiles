@@ -151,6 +151,14 @@ Plug 'vim-scripts/taglist.vim'
 Plug 'glidenote/memolist.vim'
 Plug 'preservim/nerdtree'
 Plug 'chrisbra/csv.vim'
+Plug 'dkprice/vim-easygrep'
+Plug 'previm/previm'
+Plug 'tyru/open-browser.vim'
+Plug 'mattn/vim-maketable'
+Plug 'terryma/vim-expand-region'
+Plug 'unblevable/quick-scope'
+Plug 'preservim/nerdcommenter'
+Plug 'fidian/hexmode'
 call plug#end()
 
 "---------------------------------------------------------------------------
