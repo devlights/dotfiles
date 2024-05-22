@@ -11,12 +11,14 @@ set background=dark
 "---------------------------------------------------------------------------
 " Font
 "   - https://github.com/yuru7/HackGen
+"   - https://github.com/yuru7/udev-gothic
+"   - https://github.com/yuru7/moralerspace
+"   - https://www.jetbrains.com/ja-jp/lp/mono/
 "
 "set guifont=HackGen:h14
 "set guifont=UDEV_Gothic_Regular:h15
 set guifont=UDEV_Gothic_NF_Regular:h15
 "set guifont=Moralerspace_Radon_HWJPDOC:h12
-"set guifont=Ricty_Diminished:h12
 "set guifont=JetBrains_Mono:h13
 
 "---------------------------------------------------------------------------
