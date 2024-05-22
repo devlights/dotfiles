@@ -32,9 +32,8 @@ set guioptions-=T
 " Color scheme
 "   - https://alvinalexander.com/blog/post/linux-unix/how-set-vim-gvim-default-color-scheme/ 
 "
-"colorscheme desert
-"colorscheme dracula
+colorscheme dracula
 "colorscheme catppuccin_latte
-colorscheme catppuccin_frappe
+"colorscheme catppuccin_frappe
 "colorscheme catppuccin_macchiato
 "colorscheme catppuccin_mocha
