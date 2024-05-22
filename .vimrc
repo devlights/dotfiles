@@ -124,7 +124,14 @@ endif
 "
 let g:netrw_keepdir=0
 
+"---------------------------------------------------------------------------
 " vim-plug
+"
+
+" 自動インストール
+"   未インストール時の初回だけ有効にして起動するとダウンロードしてインストールされる
+"   終わったらコメントアウトして次回から通らないようにしておく
+"   (毎回プロンプトが表示されてウザいため)
 "
 " see: https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
 "let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
@@ -146,9 +153,15 @@ Plug 'preservim/nerdtree'
 Plug 'chrisbra/csv.vim'
 call plug#end()
 
+"---------------------------------------------------------------------------
+" help lang:
+"
 " https://github.com/vim-jp/vimdoc-ja/wiki
 set helplang=ja,en
 
+"---------------------------------------------------------------------------
+" lightline
+"
 " https://github.com/catppuccin/vim
 "let g:lightline = {'colorscheme': 'dracula'}
 "let g:lightline = {'colorscheme': 'catppuccin_latte'}
