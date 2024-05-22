@@ -8,7 +8,10 @@ set background=dark
 " Font
 "   - https://github.com/yuru7/HackGen
 "set guifont=HackGen:h14
-set guifont=UDEV_Gothic_Regular:h13
+"set guifont=UDEV_Gothic_Regular:h15
+set guifont=UDEV_Gothic_NF_Regular:h15
+"set guifont=Moralerspace_Radon_HWJPDOC:h12
+"set guifont=Ricty_Diminished:h12
 "set guifont=JetBrains_Mono:h13
 
 " No menu and toolbar
@@ -21,6 +24,6 @@ set guioptions-=T
 "colorscheme desert
 "colorscheme dracula
 "colorscheme catppuccin_latte
-"colorscheme catppuccin_frappe
-colorscheme catppuccin_macchiato
+colorscheme catppuccin_frappe
+"colorscheme catppuccin_macchiato
 "colorscheme catppuccin_mocha
