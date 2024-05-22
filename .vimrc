@@ -119,6 +119,19 @@ if has("win32")
 endif
 
 "---------------------------------------------------------------------------
+" Grep
+"
+" ripgrep があれば使う
+if executable('rg')
+	set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
+	set grepformat=%f:%l:%c:%m
+endif
+ 
+ " 自動QuickFix
+ au QuickfixCmdPost make,grep,grepadd,vimgrep copen
+
+
+"---------------------------------------------------------------------------
 " netrw:
 "   - https://vim-jp.org/vimdoc-ja/pi_netrw.html#netrw-cd
 "
