@@ -155,22 +155,39 @@ endif
 
 " see: https://github.com/junegunn/vim-plug#installation
 call plug#begin()
+" ヘルプの日本語版
 Plug 'vim-jp/vimdoc-ja'
+" Draculaテーマ
 Plug 'dracula/vim',{'as':'dracula'}
+" Catppuccinテーマ
 Plug 'catppuccin/vim', { 'as': 'catppuccin' }
+" ステータスラインをオシャレに
 Plug 'itchyny/lightline.vim'
+" Ctrl-pでファイルを探す
 Plug 'ctrlpvim/ctrlp.vim'
+" :TList でタグファイルから関数定義を表示
 Plug 'vim-scripts/taglist.vim'
+" :MemoNew でメモ用のバッファを用意
 Plug 'glidenote/memolist.vim'
+" :NERDTree 使いやすいファイルエクスプローラー
 Plug 'preservim/nerdtree'
+" CSVファイルを見やすく
+"   - https://news.mynavi.jp/techplus/article/techp5046/
 Plug 'chrisbra/csv.vim'
+" <Leader>vv でカーソル上の単語をGREP
 Plug 'dkprice/vim-easygrep'
+" :PrevimOpen でMarkdownプレビュー
 Plug 'previm/previm'
 Plug 'tyru/open-browser.vim'
+" :'<,'>MakeTable でMarkdownのテーブルに整形
 Plug 'mattn/vim-maketable'
+" + と _ で選択範囲を拡張と縮小
 Plug 'terryma/vim-expand-region'
+" f と F でジャンプしやすくする
 Plug 'unblevable/quick-scope'
+" 選択した部分に <Leader>c<space> でコメントのオン・オフ
 Plug 'preservim/nerdcommenter'
+" :Hexmode で１６進数表示をオン・オフ
 Plug 'fidian/hexmode'
 call plug#end()
 
