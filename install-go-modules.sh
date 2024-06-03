@@ -10,6 +10,7 @@ go install golang.org/x/tools/cmd/goimports@latest
 go install golang.org/x/tools/cmd/deadcode@latest
 go install golang.org/x/tools/cmd/stringer@latest
 go install honnef.co/go/tools/cmd/staticcheck@latest
+go install github.com/4meepo/tagalign/cmd/tagalign@latest
 go install github.com/go-delve/delve/cmd/dlv@latest
 go install github.com/go-task/task/v3/cmd/task@latest
 go install golang.org/x/perf/cmd/...@latest
