@@ -189,6 +189,12 @@ Plug 'unblevable/quick-scope'
 Plug 'preservim/nerdcommenter'
 " :Hexmode で１６進数表示をオン・オフ
 Plug 'fidian/hexmode'
+" マークダウンの表を整形
+Plug 'mattn/vim-maketable'
+" EditorConfig用
+Plug 'editorconfig/editorconfig-vim'
+" マークを可視化
+Plug 'kshenoy/vim-signature'
 call plug#end()
 
 "---------------------------------------------------------------------------
@@ -201,9 +207,30 @@ set helplang=ja,en
 " lightline
 "
 " https://github.com/catppuccin/vim
-let g:lightline = {'colorscheme': 'dracula'}
+"let g:lightline = {'colorscheme': 'dracula'}
 "let g:lightline = {'colorscheme': 'catppuccin_latte'}
 "let g:lightline = {'colorscheme': 'catppuccin_frappe'}
 "let g:lightline = {'colorscheme': 'catppuccin_macchiato'}
-"let g:lightline = {'colorscheme': 'catppuccin_mocha'}
+let g:lightline = {'colorscheme': 'catppuccin_mocha'}
+"let g:lightline = {'colorscheme': 'tokyonight'}
 
+" NERDTree
+"
+" https://github.com/oouchida/vimrc/blob/master/vim_conf/nerd_tree.vim
+" ツリーを表示するカレントディレクトリの変更を行うか
+"    0 : 行わない、1 : 変更を行えるようにする、2 : 自動的に変更する
+"    初期値0
+let g:NERDTreeChDirMode=1
+
+" 表示を無視するファイル設定する。
+"    初期値 ['\~$']
+let g:NERDTreeIgnore=['\.clean$', '\.swp$', '\.bak$', '\~$']
+
+" 隠しファイルを表示設定
+"    0 または 1
+"    初期値0: 表示しない
+let g:NERDTreeShowHidden=1
+
+" ツリーの幅
+"    初期値31
+let g:NERDTreeWinSize=45
