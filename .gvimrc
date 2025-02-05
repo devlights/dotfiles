@@ -17,7 +17,8 @@ set background=dark
 "
 "set guifont=HackGen:h14
 "set guifont=UDEV_Gothic_Regular:h15
-set guifont=UDEV_Gothic_NF_Regular:h15
+"set guifont=UDEV_Gothic_NF_Regular:h15
+set guifont=Explex:h12
 "set guifont=Moralerspace_Radon_HWJPDOC:h12
 "set guifont=JetBrains_Mono:h13
 
@@ -32,8 +33,17 @@ set guioptions-=T
 " Color scheme
 "   - https://alvinalexander.com/blog/post/linux-unix/how-set-vim-gvim-default-color-scheme/ 
 "
-colorscheme dracula
+"colorscheme dracula
 "colorscheme catppuccin_latte
 "colorscheme catppuccin_frappe
 "colorscheme catppuccin_macchiato
-"colorscheme catppuccin_mocha
+colorscheme catppuccin_mocha
+"colorscheme tokyonight
+
+" tokyonight-vim
+"
+" https://github.com/ghifarit53/tokyonight-vim
+"set termguicolors
+"
+"let g:tokyonight_style = 'storm' " available: night, storm
+"let g:tokyonight_enable_italic = 1
