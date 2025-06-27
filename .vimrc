@@ -55,16 +55,6 @@ if has("win32")
 	set shell=cmd
 endif
 
-" Grep
-"
-" rg があれば使う
-if executable('rg')
-  set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
-  set grepformat=%f:%l:%c:%m
-endif
- 
- " 自動QuickFix
- au QuickfixCmdPost make,grep,grepadd,vimgrep copen
 
 " vim-plug
 "
@@ -140,14 +130,22 @@ nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 "nnoremap <C-f> :NERDTreeFind<CR>
 
-" ripgrep を使用する設定
-set grepprg=rg\ --vimgrep\ --no-heading\ --line-number\ --color\ never
-set grepformat=%f:%l:%c:%m
+" Grep
+"
+if executable('rg')
+	" ripgrep を使用する設定
+	set grepprg=rg\ --vimgrep\ --no-heading\ --line-number\ --color\ never
+	set grepformat=%f:%l:%c:%m
 
-" 現在の単語でgrepを実行（バイナリファイル自動除外）
-nnoremap <Leader>rg :execute "grep! " . shellescape(expand("<cword>"))<CR>:copen<CR>
+	" 現在の単語でgrepを実行（バイナリファイル自動除外）
+	nnoremap <Leader>rg :execute "grep! " . shellescape(expand("<cword>"))<CR>:copen<CR><CR>
+endif
+
+" 自動QuickFix
+au QuickfixCmdPost make,grep,grepadd,vimgrep copen
 
 " fzf
 "
 nnoremap <C-p> :Files<CR>
 nnoremap <C-c> :Rg<Space>
+
