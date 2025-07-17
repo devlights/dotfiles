@@ -1,52 +1,206 @@
+" ============================================================================
+" 基本設定
+" ============================================================================
+
+" Vi互換モードを無効化。Vimの拡張機能を使用可能にする
 set nocompatible
+
+" ファイルタイプ検出とそれに応じたプラグイン・インデントの自動読み込みを有効化
 filetype plugin indent on
+
+" シンタックスハイライト（構文強調表示）を有効化
 syntax on
+
+" 対応する括弧の検索を拡張するmatchitプラグインを読み込み
+" HTML/XMLタグ、if-endif文などの対応関係もジャンプ可能になる
 runtime macros/matchit.vim
 
-let &t_SI = "\e[5 q"   " カーソル形状をInsertモードで点滅I字型にする
-let &t_SR = "\e[4 q"   " カーソル形状をReplaceモードで下線にする
-let &t_EI = "\e[6 q"   " カーソル形状をノーマル/コマンドモードで非点滅I字型にする
 
+
+
+
+" ============================================================================
+" カーソル形状設定（ターミナル環境用）
+" ============================================================================
+
+" Insertモードでカーソル形状を点滅I字型（縦線）にする
+let &t_SI = "\e[5 q"
+
+" Replaceモードでカーソル形状を下線にする
+let &t_SR = "\e[4 q"
+
+" ノーマル/コマンドモードでカーソル形状を非点滅I字型（太い縦線）にする
+let &t_EI = "\e[6 q"
+
+
+
+
+
+" ============================================================================
+" 文字エンコーディング設定
+" ============================================================================
+
+" Vim内部で使用する文字エンコーディングをUTF-8に設定
 set encoding=utf-8
+
+" ファイル読み込み時の文字エンコーディング自動判定順序
+" 左から順に試行され、最初に成功したエンコーディングが使用される
 set fileencodings=utf-8,sjis,euc-jp,iso-2022-jp
+
+" ファイル形式（改行コード）の自動判定順序
+" unix=LF, dos=CRLF, mac=CR
 set fileformats=unix,dos,mac
+
+" 全てのベル音を無効化（エラー時の音・画面点滅を停止）
 set belloff=all
 
+
+
+
+
+" ============================================================================
+" 表示設定
+" ============================================================================
+
+" 行番号を表示
 set number
+
+" 相対行番号を表示（現在行からの相対位置）
+" jやkでの移動時に便利
 set relativenumber
+
+" 画面右下にカーソル位置（行,列）を表示
 set ruler
+
+" 入力中のコマンドを画面右下に表示
 set showcmd
+
+" 現在のモード（INSERT、VISUAL等）を表示
 set showmode
+
+" 対応する括弧をハイライト表示
 set showmatch
+
+" ステータスラインを常に表示（2=常に表示、1=ウィンドウが2つ以上の時、0=表示しない）
 set laststatus=2
+
+" カラースキームを暗い背景用に設定
 set background=dark
+
+" ファイルが外部で変更された時に自動的に読み直す
 set autoread
+
+" カーソル行のハイライトを無効化（パフォーマンス向上）
 set nocursorline
+
+" 長い行の自動折り返しを無効化
 set nowrap
 
+
+
+
+
+" ============================================================================
+" バックアップ・スワップファイル設定
+" ============================================================================
+
+" バックアップファイル（filename~）の作成を無効化
 set nobackup
+
+" スワップファイル（.filename.swp）の作成を無効化
+" 複数のVimプロセスで同じファイルを開くとき警告が出なくなる
 set noswapfile
 
+
+
+
+
+
+" ============================================================================
+" 検索設定
+" ============================================================================
+
+" 検索時に大文字小文字を区別しない
 set ignorecase
+
+" 検索文字列に大文字が含まれている場合は大文字小文字を区別する
+" ignorecaseと組み合わせることで「スマートケース」機能を実現
 set smartcase
+
+" インクリメンタルサーチを有効化（文字を入力するたびに検索実行）
 set incsearch
+
+" 検索結果をハイライト表示
 set hlsearch
+
+" 検索時にファイル末尾に到達したら先頭に戻って検索を継続
 set wrapscan
+
+" 正規表現の特殊文字を有効化（デフォルトでは一部が無効）
 set magic
+
+" 検索時に\vを自動挿入してvery magicモードを使用
+" より直感的な正規表現が使用可能（Perl/Python風）
 nmap / /\v
 
+
+
+
+
+
+" ============================================================================
+" インデント・タブ設定
+" ============================================================================
+
+" 不可視文字（タブ、改行等）の表示を無効化
 set nolist
+
+" 自動インデントを有効化（新しい行で前の行のインデントを継承）
 set autoindent
 
+" タブ文字の表示幅を4文字に設定
 set tabstop=4
+
+" 自動インデントやシフト操作（>>、<<）時のインデント幅を4文字に設定
 set shiftwidth=4
+
+" タブ文字をスペースに展開しない（実際のタブ文字を使用）
+" expandtabを設定するとタブキーでスペースが挿入される
 set noexpandtab
 
+
+
+
+
+" ============================================================================
+" マウス・クリップボード設定
+" ============================================================================
+
+" 全モードでマウス操作を有効化
+" a=all modes（normal, visual, insert, command-line）
 set mouse=a
+
+" 選択したテキストを自動的にクリップボードにコピー
 set clipboard+=autoselect
+
+" 無名レジスタとシステムクリップボードを連携
+" yank操作でシステムクリップボードにもコピーされる
 set clipboard+=unnamed
+
+" Linux/Unix系でのシステムクリップボード連携
+" X11のPRIMARY選択バッファとの連携
 set clipboard+=unnamedplus
 
+
+
+
+
+" ============================================================================
+" ファイル検索設定
+" ============================================================================
+
+" :findコマンドや:gfコマンドでのファイル検索パスに**を追加
+" カレントディレクトリ以下を再帰的に検索対象とする
 set path+=**
 
 " :help file-searching
@@ -60,54 +214,222 @@ if has("win32")
 endif
 
 
-" vim-plug
-"
-" see: https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
-"let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
-"if empty(glob(data_dir . '/autoload/plug.vim'))
-"  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-"  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-"endif
 
-" see: https://github.com/junegunn/vim-plug#installation
-call plug#begin()
-Plug 'vim-jp/vimdoc-ja'
-Plug 'dracula/vim',{'as':'dracula'}
-Plug 'catppuccin/vim', { 'as': 'catppuccin' }
-Plug 'ghifarit53/tokyonight-vim'
-Plug 'itchyny/lightline.vim'
-Plug 'vim-scripts/taglist.vim'
-Plug 'glidenote/memolist.vim'
-Plug 'preservim/nerdtree'
-Plug 'chrisbra/csv.vim'
-Plug 'dkprice/vim-easygrep'
-Plug 'mattn/vim-maketable'
-Plug 'terryma/vim-expand-region'
-Plug 'unblevable/quick-scope'
-Plug 'preservim/nerdcommenter'
-Plug 'fidian/hexmode'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'kshenoy/vim-signature'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'mattn/vim-lsp-settings'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
-call plug#end()
 
-" https://github.com/vim-jp/vimdoc-ja/wiki
-set helplang=ja,en
+" ============================================================================
+" vim-plug プラグイン管理
+" ============================================================================
 
-" https://github.com/catppuccin/vim
-"let g:lightline = {'colorscheme': 'dracula'}
-"let g:lightline = {'colorscheme': 'catppuccin_latte'}
-"let g:lightline = {'colorscheme': 'catppuccin_frappe'}
-"let g:lightline = {'colorscheme': 'catppuccin_macchiato'}
-let g:lightline = {'colorscheme': 'catppuccin_mocha'}
-"let g:lightline = {'colorscheme': 'tokyonight'}
+" vim-plugのインストールは
+" 		https://github.com/junegunn/vim-plug#installation
+" を参照。
 
+" vim-plugの存在確認
+" 1. plug#begin関数が存在するか確認
+" 2. autoload/plug.vimファイルが存在するか確認
+let s:plug_available = 0
+if exists('*plug#begin')
+  let s:plug_available = 1
+else
+  " vim-plugのautoloadファイルの存在確認
+  let s:plug_path = has('nvim') ? stdpath('data') . '/site/autoload/plug.vim' : expand('~/.vim/autoload/plug.vim')
+  if filereadable(s:plug_path)
+    " ファイルが存在する場合、autoloadで読み込みを試行
+    try
+      runtime autoload/plug.vim
+      if exists('*plug#begin')
+        let s:plug_available = 1
+      endif
+    catch
+      " autoload読み込みに失敗した場合は無視
+    endtry
+  endif
+endif
+
+" vim-plugが利用可能な場合のみプラグイン設定を実行
+if s:plug_available
+  " vim-plugプラグイン定義開始
+  " see: https://github.com/junegunn/vim-plug#installation
+  call plug#begin()
+
+  " ============================================================================
+  " ドキュメント・ヘルプ系
+  " ============================================================================
+
+  " 日本語ヘルプドキュメント
+  " :help コマンドで日本語のヘルプを表示可能
+  Plug 'vim-jp/vimdoc-ja'
+
+  " ============================================================================
+  " カラースキーム（テーマ）
+  " ============================================================================
+
+  " Draculaテーマ - ダークで視認性の高いカラースキーム
+  " {'as': 'dracula'}により、プラグイン名を'dracula'として参照可能
+  Plug 'dracula/vim',{'as':'dracula'}
+
+  " Catppuccinテーマ - パステルカラーが特徴的なモダンテーマ
+  " 4つのフレーバー（Latte, Frappe, Macchiato, Mocha）から選択可能
+  Plug 'catppuccin/vim', { 'as': 'catppuccin' }
+
+  " Tokyo Nightテーマ - VS Codeの人気テーマのVim版
+  " 目に優しいダークテーマ
+  Plug 'ghifarit53/tokyonight-vim'
+
+  " ============================================================================
+  " ステータスライン・UI拡張
+  " ============================================================================
+
+  " 軽量で高機能なステータスライン
+  " デフォルトのステータスラインをより情報豊富で美しく表示
+  " 各種プラグインとの連携も充実
+  Plug 'itchyny/lightline.vim'
+
+  " ============================================================================
+  " ファイル・プロジェクト管理
+  " ============================================================================
+
+  " タグリスト表示プラグイン
+  " 関数、クラス、変数等の定義一覧を表示
+  " ctagsが必要（別途インストール要）
+  Plug 'vim-scripts/taglist.vim'
+
+  " メモ管理プラグイン
+  " 簡単なメモ作成・管理機能を提供
+  " :MemoNewでメモ作成、:MemoListでメモ一覧表示
+  Plug 'glidenote/memolist.vim'
+
+  " ファイルエクスプローラー
+  " サイドバーでディレクトリツリーを表示
+  " :NERDTreeでファイルツリーを開く
+  Plug 'preservim/nerdtree'
+
+  " ============================================================================
+  " ファイル形式特化型プラグイン
+  " ============================================================================
+
+  " CSV編集支援プラグイン
+  " CSV形式のファイルを表形式で見やすく表示
+  " 列の整列、フィルタリング、ソート機能等
+  Plug 'chrisbra/csv.vim'
+
+  " ============================================================================
+  " 検索・置換拡張
+  " ============================================================================
+
+  " 高機能なGrep検索プラグイン
+  " 複数ファイルにまたがる検索・置換を効率的に実行
+  " 正規表現による高度な検索パターンをサポート
+  Plug 'dkprice/vim-easygrep'
+
+  " ============================================================================
+  " テーブル・整形支援
+  " ============================================================================
+
+  " マークダウン形式のテーブル作成支援
+  " 選択したテキストをテーブル形式に変換
+  " アスキーアートテーブルの自動整形
+  Plug 'mattn/vim-maketable'
+
+  " ============================================================================
+  " 選択・移動支援
+  " ============================================================================
+
+  " 選択範囲を段階的に拡張
+  " v+で選択範囲を拡張、v-で縮小
+  " 単語→文→段落→関数→ファイル全体の順で拡張
+  Plug 'terryma/vim-expand-region'
+
+  " f/F/t/T移動の高速化
+  " 移動先の文字をハイライト表示して視認性を向上
+  " 一意な文字は色を変えて表示
+  Plug 'unblevable/quick-scope'
+
+  " ============================================================================
+  " コメント支援
+  " ============================================================================
+
+  " 高機能コメント切り替えプラグイン
+  " <leader>ccでコメント化、<leader>cuでコメント解除
+  " 複数行選択対応、各言語の適切なコメント形式を自動判定
+  Plug 'preservim/nerdcommenter'
+
+  " ============================================================================
+  " 特殊ファイル編集支援
+  " ============================================================================
+
+  " バイナリファイルの16進数表示・編集
+  " :Hexmodeで16進数表示モードに切り替え
+  " バイナリファイルの安全な編集が可能
+  Plug 'fidian/hexmode'
+
+  " ============================================================================
+  " 開発環境統合
+  " ============================================================================
+
+  " EditorConfig対応プラグイン
+  " .editorconfigファイルの設定を自動適用
+  " プロジェクト間でのコーディング規約統一
+  Plug 'editorconfig/editorconfig-vim'
+
+  " マーク（ブックマーク）の可視化
+  " m[a-z]で設定したマークを行番号横に表示
+  " マークの状態を視覚的に把握可能
+  Plug 'kshenoy/vim-signature'
+
+  " ============================================================================
+  " ファジーファインダー（高速検索）
+  " ============================================================================
+
+  " fzf（fuzzy finder）本体
+  " 高速なファジー検索機能を提供
+  " { 'do': { -> fzf#install() } }でfzfバイナリを自動インストール
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+
+  " fzfのVim統合プラグイン
+  " :Files, :Buffers, :Lines等のコマンドでファジー検索
+  " ファイル、バッファ、行、コマンド履歴等を高速検索
+  Plug 'junegunn/fzf.vim'
+
+  " ============================================================================
+  " LSP（Language Server Protocol）・自動補完
+  " ============================================================================
+
+  " LSPクライアント本体
+  " 各種プログラミング言語のLanguage Serverとの通信を担当
+  " 構文チェック、定義ジャンプ、リファクタリング等の機能を提供
+  Plug 'prabirshrestha/vim-lsp'
+
+  " LSPサーバーの自動設定
+  " 主要な言語のLSPサーバーを自動検出・設定
+  " 手動でのLSPサーバー設定を大幅に簡略化
+  Plug 'mattn/vim-lsp-settings'
+
+  " 非同期自動補完エンジン
+  " 入力中にリアルタイムで候補を表示
+  " LSPと連携して高精度な補完を実現
+  Plug 'prabirshrestha/asyncomplete.vim'
+
+  " LSPとasyncompleteの連携プラグイン
+  " LSPからの補完候補をasyncompleteで表示
+  Plug 'prabirshrestha/asyncomplete-lsp.vim'
+
+  " vim-plugプラグイン定義終了
+  call plug#end()
+endif
+
+" vim-plug利用可能フラグの削除（名前空間の汚染を防ぐ）
+unlet! s:plug_available
+
+
+
+
+
+
+" ============================================================================
 " NERDTree
+" ============================================================================
+
 "
 " https://github.com/oouchida/vimrc/blob/master/vim_conf/nerd_tree.vim
 " ツリーを表示するカレントディレクトリの変更を行うか
@@ -128,9 +450,13 @@ let g:NERDTreeShowHidden=1
 "    初期値31
 let g:NERDTreeWinSize=45
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+
+
+" ============================================================================
 " マッピング
-" 
+" ============================================================================
 """"""""""""""""""
 " NERDTree
 """"""""""""""""""
@@ -181,10 +507,19 @@ if executable('rg')
 	nnoremap <Leader>rg :execute "grep! " . shellescape(expand("<cword>"))<CR>:copen<CR><CR>
 endif
 
-""""""""""""""""""
+
+
+
+
+" ============================================================================
 " 補完ウィンドウの設定
-""""""""""""""""""
-set completeopt=menuone,noinsert
+" ============================================================================
+" 自動補完デフォルト無効
+let g:asyncomplete_auto_popup = 0
+" 補完メニューの最大項目数制限（パフォーマンス向上）
+set pumheight=10
+" 補完候補の詳細情報表示
+set completeopt=menuone,noinsert,preview
 
 " 補完ウィンドウ表示時にEnterで候補確定、ウィンドウ非表示時は改行
 inoremap <expr><CR> pumvisible() ? "<C-y>" : "<CR>"
@@ -194,9 +529,42 @@ inoremap <expr><C-n> pumvisible() ? "<Down>" : "<C-n>"
 inoremap <expr><C-p> pumvisible() ? "<Up>" : "<C-p>"
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+
+" ============================================================================
 " Autocmd
-" 
+" ============================================================================
 " 自動QuickFix
 au QuickfixCmdPost make,grep,grepadd,vimgrep copen
+" Goの補完設定
+"   https://stackoverflow.com/a/77133631
+au FileType go setlocal omnifunc=lsp#complete
+
+
+
+
+
+
+" ============================================================================
+" ヘルプの言語設定
+" ============================================================================
+
+" https://github.com/vim-jp/vimdoc-ja/wiki
+set helplang=ja,en
+
+
+
+
+
+" ============================================================================
+" テーマの設定
+" ============================================================================
+" https://github.com/catppuccin/vim
+"let g:lightline = {'colorscheme': 'dracula'}
+"let g:lightline = {'colorscheme': 'catppuccin_latte'}
+"let g:lightline = {'colorscheme': 'catppuccin_frappe'}
+"let g:lightline = {'colorscheme': 'catppuccin_macchiato'}
+let g:lightline = {'colorscheme': 'catppuccin_mocha'}
+"let g:lightline = {'colorscheme': 'tokyonight'}
 
