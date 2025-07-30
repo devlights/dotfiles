@@ -15,11 +15,11 @@ set background=dark
 "   - https://github.com/yuru7/moralerspace
 "   - https://www.jetbrains.com/ja-jp/lp/mono/
 "
-"set guifont=HackGen:h14
-"set guifont=UDEV_Gothic_Regular:h15
-"set guifont=UDEV_Gothic_NF_Regular:h15
-set guifont=Explex:h12
-"set guifont=Moralerspace_Radon_HWJPDOC:h12
+"set guifont=HackGen:h13
+"set guifont=UDEV_Gothic_Regular:h13
+"set guifont=UDEV_Gothic_NF_Regular:h13
+set guifont=Explex:h13
+"set guifont=Moralerspace_Radon_HWJPDOC:h13
 "set guifont=JetBrains_Mono:h13
 
 "---------------------------------------------------------------------------
