@@ -398,21 +398,21 @@ if s:plug_available
   " LSPクライアント本体
   " 各種プログラミング言語のLanguage Serverとの通信を担当
   " 構文チェック、定義ジャンプ、リファクタリング等の機能を提供
-  Plug 'prabirshrestha/vim-lsp'
+  "Plug 'prabirshrestha/vim-lsp'
 
   " LSPサーバーの自動設定
   " 主要な言語のLSPサーバーを自動検出・設定
   " 手動でのLSPサーバー設定を大幅に簡略化
-  Plug 'mattn/vim-lsp-settings'
+  "Plug 'mattn/vim-lsp-settings'
 
   " 非同期自動補完エンジン
   " 入力中にリアルタイムで候補を表示
   " LSPと連携して高精度な補完を実現
-  Plug 'prabirshrestha/asyncomplete.vim'
+  "Plug 'prabirshrestha/asyncomplete.vim'
 
   " LSPとasyncompleteの連携プラグイン
   " LSPからの補完候補をasyncompleteで表示
-  Plug 'prabirshrestha/asyncomplete-lsp.vim'
+  "Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
   " vim-plugプラグイン定義終了
   call plug#end()
@@ -488,12 +488,12 @@ nnoremap <C-c> :Rg<Space>
 " - LspRestartServer               : LSPサーバの再起動
 " - LspStopServer                  : LSPサーバの停止
 """"""""""""""""""
-nmap <silent> gd :LspDefinition<CR>
-nmap <silent> gr :LspReferences<CR>
-nmap <silent> <F2> :LspRename<CR>
-nmap <silent> <Leader>q :LspCodeAction<CR>
-nmap <silent> <Leader>f :LspDocumentFormat<CR>
-nmap <silent> K :LspHover<CR>
+"nmap <silent> gd :LspDefinition<CR>
+"nmap <silent> gr :LspReferences<CR>
+"nmap <silent> <F2> :LspRename<CR>
+"nmap <silent> <Leader>q :LspCodeAction<CR>
+"nmap <silent> <Leader>f :LspDocumentFormat<CR>
+"nmap <silent> K :LspHover<CR>
 
 """"""""""""""""""
 " Grep
