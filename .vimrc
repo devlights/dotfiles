@@ -15,8 +15,8 @@ syntax on
 " HTML/XMLタグ、if-endif文などの対応関係もジャンプ可能になる
 runtime macros/matchit.vim
 
-
-
+" コマンドモード時のファイル名補完を大文字・小文字を区別しないようにする
+set wildignorecase
 
 
 " ============================================================================
@@ -266,7 +266,7 @@ if s:plug_available
 
   " Draculaテーマ - ダークで視認性の高いカラースキーム
   " {'as': 'dracula'}により、プラグイン名を'dracula'として参照可能
-  Plug 'dracula/vim',{'as':'dracula'}
+  "Plug 'dracula/vim',{'as':'dracula'}
 
   " Catppuccinテーマ - パステルカラーが特徴的なモダンテーマ
   " 4つのフレーバー（Latte, Frappe, Macchiato, Mocha）から選択可能
@@ -539,7 +539,7 @@ inoremap <expr><C-p> pumvisible() ? "<Up>" : "<C-p>"
 au QuickfixCmdPost make,grep,grepadd,vimgrep copen
 " Goの補完設定
 "   https://stackoverflow.com/a/77133631
-au FileType go setlocal omnifunc=lsp#complete
+"au FileType go setlocal omnifunc=lsp#complete
 
 
 
