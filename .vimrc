@@ -181,7 +181,7 @@ set noexpandtab
 set mouse=a
 
 " 選択したテキストを自動的にクリップボードにコピー
-set clipboard+=autoselect
+"set clipboard+=autoselect
 
 " 無名レジスタとシステムクリップボードを連携
 " yank操作でシステムクリップボードにもコピーされる
