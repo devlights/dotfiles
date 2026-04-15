@@ -206,10 +206,11 @@ set tags=./tags;
 
 " Change terminal shell (Windows)
 "   - https://vi.stackexchange.com/a/14934
+" (注意) ここをcmd以外にしてしまうと vim-plug でエラーが出る
 if has("win32")
-	set shell=nu
+"	set shell=nu
 "	set shell=pwsh
-"	set shell=cmd
+	set shell=cmd
 endif
 
 
@@ -257,8 +258,17 @@ if s:plug_available
   Plug 'dracula/vim',{'as':'dracula'}
 
   " Catppuccinテーマ - パステルカラーが特徴的なモダンテーマ
+  " airline / lightline テーマ付属
   " 4つのフレーバー（Latte, Frappe, Macchiato, Mocha）から選択可能
   Plug 'catppuccin/vim', { 'as': 'catppuccin' }
+
+  " Iceberg - 青系のミニマルカラースキーム（Vim/Neovim対応）
+  " airline / lightline テーマ付属
+  Plug 'cocopon/iceberg.vim'
+
+  " Tender - 24bit カラー対応のウォームトーンカラースキーム
+  " airline / lightline テーマ付属
+  Plug 'jacoborus/tender.vim'
 
   " Tokyo Nightテーマ - VS Codeの人気テーマのVim版
   " 目に優しいダークテーマ
@@ -546,6 +556,8 @@ set helplang=ja,en
 "let g:lightline = {'colorscheme': 'dracula'}
 "let g:lightline = {'colorscheme': 'catppuccin_latte'}
 "let g:lightline = {'colorscheme': 'catppuccin_frappe'}
-let g:lightline = {'colorscheme': 'catppuccin_macchiato'}
+"let g:lightline = {'colorscheme': 'catppuccin_macchiato'}
 "let g:lightline = {'colorscheme': 'catppuccin_mocha'}
 "let g:lightline = {'colorscheme': 'tokyonight'}
+"let g:lightline = {'colorscheme': 'tender'}
+let g:lightline = {'colorscheme': 'iceberg'}
