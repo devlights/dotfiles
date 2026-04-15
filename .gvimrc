@@ -18,7 +18,7 @@ set background=dark
 "set guifont=HackGen:h13
 "set guifont=UDEV_Gothic_Regular:h13
 "set guifont=UDEV_Gothic_NF_Regular:h13
-set guifont=Explex:h13
+set guifont=Explex:h11
 "set guifont=Moralerspace_Radon_HWJPDOC:h13
 "set guifont=JetBrains_Mono:h13
 
