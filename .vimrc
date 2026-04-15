@@ -15,8 +15,6 @@ syntax on
 " HTML/XMLタグ、if-endif文などの対応関係もジャンプ可能になる
 runtime macros/matchit.vim
 
-" コマンドモード時のファイル名補完を大文字・小文字を区別しないようにする
-set wildignorecase
 
 
 " ============================================================================
@@ -181,7 +179,7 @@ set noexpandtab
 set mouse=a
 
 " 選択したテキストを自動的にクリップボードにコピー
-"set clipboard+=autoselect
+set clipboard+=autoselect
 
 " 無名レジスタとシステムクリップボードを連携
 " yank操作でシステムクリップボードにもコピーされる
@@ -209,11 +207,10 @@ set tags=./tags;
 " Change terminal shell (Windows)
 "   - https://vi.stackexchange.com/a/14934
 if has("win32")
-"	set shell=nu
-	set shell=cmd
+	set shell=nu
+"	set shell=pwsh
+"	set shell=cmd
 endif
-
-
 
 
 " ============================================================================
@@ -228,22 +225,13 @@ endif
 " 1. plug#begin関数が存在するか確認
 " 2. autoload/plug.vimファイルが存在するか確認
 let s:plug_available = 0
-if exists('*plug#begin')
+let s:plug_path = has('nvim') ? stdpath('data') . '/site/autoload/plug.vim' : expand('~/.vim/autoload/plug.vim')
+if has("win32")
+  let s:plug_path = expand('~/vimfiles/autoload/plug.vim')
+endif
+
+if filereadable(s:plug_path)
   let s:plug_available = 1
-else
-  " vim-plugのautoloadファイルの存在確認
-  let s:plug_path = has('nvim') ? stdpath('data') . '/site/autoload/plug.vim' : expand('~/.vim/autoload/plug.vim')
-  if filereadable(s:plug_path)
-    " ファイルが存在する場合、autoloadで読み込みを試行
-    try
-      runtime autoload/plug.vim
-      if exists('*plug#begin')
-        let s:plug_available = 1
-      endif
-    catch
-      " autoload読み込みに失敗した場合は無視
-    endtry
-  endif
 endif
 
 " vim-plugが利用可能な場合のみプラグイン設定を実行
@@ -266,7 +254,7 @@ if s:plug_available
 
   " Draculaテーマ - ダークで視認性の高いカラースキーム
   " {'as': 'dracula'}により、プラグイン名を'dracula'として参照可能
-  "Plug 'dracula/vim',{'as':'dracula'}
+  Plug 'dracula/vim',{'as':'dracula'}
 
   " Catppuccinテーマ - パステルカラーが特徴的なモダンテーマ
   " 4つのフレーバー（Latte, Frappe, Macchiato, Mocha）から選択可能
@@ -398,21 +386,21 @@ if s:plug_available
   " LSPクライアント本体
   " 各種プログラミング言語のLanguage Serverとの通信を担当
   " 構文チェック、定義ジャンプ、リファクタリング等の機能を提供
-  "Plug 'prabirshrestha/vim-lsp'
+  Plug 'prabirshrestha/vim-lsp'
 
   " LSPサーバーの自動設定
   " 主要な言語のLSPサーバーを自動検出・設定
   " 手動でのLSPサーバー設定を大幅に簡略化
-  "Plug 'mattn/vim-lsp-settings'
+  Plug 'mattn/vim-lsp-settings'
 
   " 非同期自動補完エンジン
   " 入力中にリアルタイムで候補を表示
   " LSPと連携して高精度な補完を実現
-  "Plug 'prabirshrestha/asyncomplete.vim'
+  Plug 'prabirshrestha/asyncomplete.vim'
 
   " LSPとasyncompleteの連携プラグイン
   " LSPからの補完候補をasyncompleteで表示
-  "Plug 'prabirshrestha/asyncomplete-lsp.vim'
+  Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
   " vim-plugプラグイン定義終了
   call plug#end()
@@ -467,6 +455,7 @@ nnoremap <C-t> :NERDTreeToggle<CR>
 " fzf
 """"""""""""""""""
 nnoremap <C-p> :Files<CR>
+nnoremap <leader>b :Buffers<CR>
 nnoremap <C-c> :Rg<Space>
 
 """"""""""""""""""
@@ -488,12 +477,12 @@ nnoremap <C-c> :Rg<Space>
 " - LspRestartServer               : LSPサーバの再起動
 " - LspStopServer                  : LSPサーバの停止
 """"""""""""""""""
-"nmap <silent> gd :LspDefinition<CR>
-"nmap <silent> gr :LspReferences<CR>
-"nmap <silent> <F2> :LspRename<CR>
-"nmap <silent> <Leader>q :LspCodeAction<CR>
-"nmap <silent> <Leader>f :LspDocumentFormat<CR>
-"nmap <silent> K :LspHover<CR>
+nmap <silent> gd :LspDefinition<CR>
+nmap <silent> gr :LspReferences<CR>
+nmap <silent> <F2> :LspRename<CR>
+nmap <silent> <Leader>q :LspCodeAction<CR>
+nmap <silent> <Leader>f :LspDocumentFormat<CR>
+nmap <silent> K :LspHover<CR>
 
 """"""""""""""""""
 " Grep
@@ -507,15 +496,11 @@ if executable('rg')
 	nnoremap <Leader>rg :execute "grep! " . shellescape(expand("<cword>"))<CR>:copen<CR><CR>
 endif
 
-
-
-
-
 " ============================================================================
 " 補完ウィンドウの設定
 " ============================================================================
 " 自動補完デフォルト無効
-let g:asyncomplete_auto_popup = 0
+let g:asyncomplete_auto_popup = 1
 " 補完メニューの最大項目数制限（パフォーマンス向上）
 set pumheight=10
 " 補完候補の詳細情報表示
@@ -538,10 +523,7 @@ inoremap <expr><C-p> pumvisible() ? "<Up>" : "<C-p>"
 " 自動QuickFix
 au QuickfixCmdPost make,grep,grepadd,vimgrep copen
 " Goの補完設定
-"   https://stackoverflow.com/a/77133631
 "au FileType go setlocal omnifunc=lsp#complete
-
-
 
 
 
@@ -564,7 +546,6 @@ set helplang=ja,en
 "let g:lightline = {'colorscheme': 'dracula'}
 "let g:lightline = {'colorscheme': 'catppuccin_latte'}
 "let g:lightline = {'colorscheme': 'catppuccin_frappe'}
-"let g:lightline = {'colorscheme': 'catppuccin_macchiato'}
-let g:lightline = {'colorscheme': 'catppuccin_mocha'}
+let g:lightline = {'colorscheme': 'catppuccin_macchiato'}
+"let g:lightline = {'colorscheme': 'catppuccin_mocha'}
 "let g:lightline = {'colorscheme': 'tokyonight'}
-
