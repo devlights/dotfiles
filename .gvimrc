@@ -2,9 +2,9 @@
 " Gui
 "
 " Height
-set lines=35
+set lines=50
 " Width
-set columns=120
+set columns=150
 " Background
 set background=dark
 
