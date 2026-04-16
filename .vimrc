@@ -178,8 +178,10 @@ set noexpandtab
 " a=all modes（normal, visual, insert, command-line）
 set mouse=a
 
-" 選択したテキストを自動的にクリップボードにコピー
-set clipboard+=autoselect
+if has('clipboard')
+	" 選択したテキストを自動的にクリップボードにコピー
+	set clipboard+=autoselect
+endif
 
 " 無名レジスタとシステムクリップボードを連携
 " yank操作でシステムクリップボードにもコピーされる
@@ -477,6 +479,7 @@ nnoremap <C-c> :Rg<Space>
 " - LspReferences                  : シンボル参照元の一覧表示
 " - LspRename                      : シンボル名のリネーム（名前一括変更）
 " - LspDocumentFormat              : ファイル全体の整形
+" - LspDocumentSymbol              : ファイル内のシンボルの表示
 " - LspCodeAction                  : Quick Fix（簡易修正案の適用）、import整理など
 " - LspDocumentRangeFormat         : 選択範囲のみ整形
 " - LspSignatureHelpi              : 関数呼び出し時のパラメータ/シグネチャ表示
@@ -489,6 +492,7 @@ nnoremap <C-c> :Rg<Space>
 """"""""""""""""""
 nmap <silent> gd :LspDefinition<CR>
 nmap <silent> gr :LspReferences<CR>
+nmap <silent> gs :LspDocumentSymbol<CR>
 nmap <silent> <F2> :LspRename<CR>
 nmap <silent> <Leader>q :LspCodeAction<CR>
 nmap <silent> <Leader>f :LspDocumentFormat<CR>
@@ -552,7 +556,10 @@ set helplang=ja,en
 " ============================================================================
 " テーマの設定
 " ============================================================================
-" https://github.com/catppuccin/vim
+" Color Scheme
+colorscheme iceberg
+
+" Light Line
 "let g:lightline = {'colorscheme': 'dracula'}
 "let g:lightline = {'colorscheme': 'catppuccin_latte'}
 "let g:lightline = {'colorscheme': 'catppuccin_frappe'}
