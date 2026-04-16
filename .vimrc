@@ -514,7 +514,7 @@ endif
 " 補完ウィンドウの設定
 " ============================================================================
 " 自動補完デフォルト無効
-let g:asyncomplete_auto_popup = 1
+let g:asyncomplete_auto_popup = 0
 " 補完メニューの最大項目数制限（パフォーマンス向上）
 set pumheight=10
 " 補完候補の詳細情報表示
@@ -536,9 +536,11 @@ inoremap <expr><C-p> pumvisible() ? "<Up>" : "<C-p>"
 " ============================================================================
 " 自動QuickFix
 au QuickfixCmdPost make,grep,grepadd,vimgrep copen
-" Goの補完設定
-"au FileType go setlocal omnifunc=lsp#complete
-
+" LSPが有効なバッファであれば omnifunc で補完ウィンドウが表示されるようにする
+augroup lsp_omnifunc
+    autocmd!
+    autocmd User lsp_buffer_enabled setlocal omnifunc=lsp#complete
+augroup END
 
 
 
