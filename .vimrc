@@ -414,6 +414,12 @@ if s:plug_available
   " LSPからの補完候補をasyncompleteで表示
   Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
+  " Markdownプレビュー
+  " If you don't have nodejs and yarn
+  " use pre build, add 'vim-plug' to the filetype list so vim-plug can update this plugin
+  " see: https://github.com/iamcco/markdown-preview.nvim/issues/50
+  Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+
   " vim-plugプラグイン定義終了
   call plug#end()
 endif
@@ -480,6 +486,7 @@ nnoremap <C-c> :Rg<Space>
 " - LspRename                      : シンボル名のリネーム（名前一括変更）
 " - LspDocumentFormat              : ファイル全体の整形
 " - LspDocumentSymbol              : ファイル内のシンボルの表示
+" - LspDocumentSymbolSearch        : ファイル内のシンボルの検索
 " - LspCodeAction                  : Quick Fix（簡易修正案の適用）、import整理など
 " - LspDocumentRangeFormat         : 選択範囲のみ整形
 " - LspSignatureHelpi              : 関数呼び出し時のパラメータ/シグネチャ表示
@@ -492,7 +499,7 @@ nnoremap <C-c> :Rg<Space>
 """"""""""""""""""
 nmap <silent> gd :LspDefinition<CR>
 nmap <silent> gr :LspReferences<CR>
-nmap <silent> gs :LspDocumentSymbol<CR>
+nmap <silent> gs :LspDocumentSymbolSearch<CR>
 nmap <silent> <F2> :LspRename<CR>
 nmap <silent> <Leader>q :LspCodeAction<CR>
 nmap <silent> <Leader>f :LspDocumentFormat<CR>
